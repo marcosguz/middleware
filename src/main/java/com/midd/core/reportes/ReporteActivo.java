@@ -92,9 +92,16 @@ public class ReporteActivo {
 
             if (activo.isEstado()) 
                 mensaje = "Devuelto";
-            else 
-                mensaje = "En uso";
+            else {
+                if (activo.isBorrado_logico()) {
+                    mensaje = "Eliminado";
+                } else {
+                    mensaje = "En uso";
+                }
+            }
         
+            
+
             Perfil perfil = servicio_perfil.buscarPerfilMio(activo.getId_ultimatix());
             Asociado asociado = servicios_asociados.buscarAsociadoPorId(activo.getId_ultimatix());
             if(activo.getHostname().equals("") || activo.getHostname() ==  null )
